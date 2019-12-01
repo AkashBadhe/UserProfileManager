@@ -11,9 +11,9 @@ import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
+import {CardMedia, CardContent } from "@material-ui/core/";
 import Button from "@material-ui/core/Button";
+import services from '../srvices';
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,60 +25,15 @@ import {
 export default class Profile extends Component {
   state = {
     filter: "",
-    data: [
-      {
-        id: "1",
-        fname: "Vishal Gangawane",
-        Designation: "Manager",
-        email: "vishal.gangawane@spadeworx.com",
-        src: "./assets/images/vishal.jpg"
-      },
-      {
-        id: "2",
-        fname: "Prafull Mane",
-        Designation: "Proffession Lead",
-        email: "prafull.mane@spadeworx.com",
-        src: "./assets/images/prafull.jpg"
-      },
-      {
-        id: "3",
-        fname: "Shrikant Salunke",
-        Designation: "Sr. Ui Developer",
-        email: "shrikant.salunke@spadeworx.com",
-        src: "./assets/images/shrikant.jpg"
-      },
-
-      {
-        id: "5",
-        fname: "Sanjay Patel",
-        Designation: "Sr. Ui Developer",
-        email: "sanjay.patel@spadeworx.com",
-        src: "./assets/images/sanjay.jpg"
-      },
-      {
-        id: "4",
-        fname: "Mahesh Powar",
-        Designation: "Sr. Ui Developer",
-        email: "mahesh.powar@spadeworx.com",
-        src: "./assets/images/mahesh.jpg"
-      },
-      {
-        id: "6",
-        fname: "Amardeep Patil",
-        Designation: "Sr. Ux Designer",
-        email: "amardeep.patil@spadeworx.com",
-        src: "./assets/images/amar.jpg"
-      },
-
-      {
-        id: "7",
-        fname: "Sneha Kolte",
-        Designation: "Ui Developer",
-        email: "sneha.kolte@spadeworx.com",
-        src: "./assets/images/sneha.jpg"
-      }
-    ]
+    data: []
   };
+
+  componentDidMount(){
+    let data = services.getUsers();
+    this.setState({
+      data: data
+    })
+  }
 
   handleChange = event => {
     this.setState({ filter: event.target.value });
@@ -145,7 +100,8 @@ export default class Profile extends Component {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button className="btn-profile">Learn More</Button>
+                    {/* <Button className="btn-profile" >Learn More</Button> */}
+                    <Link to={`/profileDetails/`+ item.id} className="btn-profile">Learn More</Link>
                   </CardActions>
                 </Card>
               </Grid>

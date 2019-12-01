@@ -1,5 +1,5 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from './components/companydetails';
 import PersonList from './components/personlist';
 import Main from './components/personlist';
@@ -22,21 +22,12 @@ class App extends React.Component {
   
 	render() {
   	return (
-    	<div>
-     
-          {/*<Main />*/}
-        {/*<Register/>*/}
-         <Profile/>
-         {/*<Profiledetails/>*/}
-
-
-
-
-
-
-
-
-    	</div>
+    <Router>
+      <Switch>
+        <Route path="/profiledetails/:id" component={Profiledetails}/>
+        <Route path="/" component={Profile}/>
+      </Switch>
+    </Router>
     );
   }	
 }
